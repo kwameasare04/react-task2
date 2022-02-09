@@ -45,3 +45,4 @@ export default App;
 
 
 /// 1) Create an input field (in app component) with a change listener which outputs the length of the entered text below it(e.g. <p> tag) 
+////2) Create a new component (=> ValidationComponent) which recieves the the length as a prop
