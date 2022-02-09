@@ -10,31 +10,47 @@ class App extends Component {
     ]
   }
 
-  countLength = (event) =>{
-    let array = {...event.target.value};
+  setLengthHandler = (event) =>{
+    let targetValue = event.target.value;
+    
+    let targetValueArray = targetValue.split('');
 
-    let lengthOfText = array.forEach(el => {
-      let count = 0;
-      count++;
+    let lengthOfText = targetValueArray.length + 1;
 
-      return count
-    })
-    let newLength = {lengthOfInput : lengthOfText}
+    let newLength = [...this.state.inputText];
+
+    newLength.splice(0,1);
+    newLength[0] = lengthOfText;
     
     this.setState({inputText:newLength})
   }
 
-
   render(){
+
+  let textLength = (
+  <div>
+    {this.state.inputText.map(el => {
+      <p name={el.lengthOfInput}> {this.props.name}</p>
+    })
+    }
+
+
+  </div>
+  )
+
+
   return (
     <div className="App">
-     <input OnChange={(event) => this.countLength}></input>
-     <p>{this.state.inputText.lengthOfInput}</p>
+     <input onChange={(event) => this.setLengthHandler(event)}></input>
+     {textLength}
     </div>
   );
 
+
   }
 }
+
+
 
 export default App;
 
