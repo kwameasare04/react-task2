@@ -5,44 +5,32 @@ import './App.css';
 class App extends Component {
 
   state = {
-    inputText : [
-      {lengthOfInput : 0}
-    ]
+    inputText : ""
   }
 
   setLengthHandler = (event) =>{
-    let targetValue = event.target.value;
-    
-    let targetValueArray = targetValue.split('');
+    this.setState({inputText: event.target.value});
 
-    let lengthOfText = targetValueArray.length + 1;
+  }
 
-    let newLength = [...this.state.inputText];
+  getLengthHandler = () =>{
+    let value = this.state.inputText;
 
-    newLength.splice(0,1);
-    newLength[0] = lengthOfText;
-    
-    this.setState({inputText:newLength})
+    let valueArray = value.split('');
+
+    return valueArray.length;
   }
 
   render(){
 
-  let textLength = (
-  <div>
-    {this.state.inputText.map(el => {
-      <p name={el.lengthOfInput}> {this.props.name}</p>
-    })
-    }
-
-
-  </div>
-  )
-
-
   return (
     <div className="App">
-     <input onChange={(event) => this.setLengthHandler(event)}></input>
-     {textLength}
+     <input type="text" 
+     onChange={this.setLengthHandler}
+     value={this.state.inputText}
+     />
+     <p>The length of your text is {this.getLengthHandler()}</p>
+
     </div>
   );
 
