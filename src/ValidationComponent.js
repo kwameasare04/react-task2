@@ -1,6 +1,6 @@
 import react from "react";
 
-const validationComponet = (props) =>{
+const ValidationComponet = (props) =>{
 return (
     <div>
      
@@ -11,7 +11,7 @@ return (
 
     )}
 
-export default validationComponet;
+export default ValidationComponet;
 
 
 ////2) Create a new component (=> ValidationComponent) which recieves the the length as a prop
