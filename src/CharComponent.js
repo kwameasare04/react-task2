@@ -5,7 +5,7 @@ const CharComponent = (props)=> {
     const style_sheet = {
         display: 'inline-block',
         padding: '16px',
-        textallign: 'center',
+        textAllign: 'center',
         margin: '16px',
         border: '1px solid black'
       };
@@ -14,10 +14,11 @@ return (
 <div style={style_sheet} 
 onClick={props.click}
 index={props.index}
-charIndex={props.charIndex}
+charindex={props.charindex}
 >
 
-    <p>Character {props.index} is {props.char}</p>
+    {/* <p>Character {props.charindex} is {props.char}</p> */}
+    {props.char}
 
 </div>
 

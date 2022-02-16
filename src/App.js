@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import React, {Component} from 'react';
+import React, {Component, useReducer} from 'react';
 import './App.css';
 import ValidationComponet from './ValidationComponent';
 import CharComponent from './CharComponent';
@@ -39,33 +39,21 @@ class App extends Component {
 
 
   deleteCharComponentHandler = (index)=>{
-  let charArray = [...this.state.inputArray];
-  
-  charArray.splice(index, 1)
-  this.setState({inputArray: charArray})
+  let charArray = this.state.inputText.split('');
+  charArray.splice(index, 1);
+  let newChar = charArray.join('');
+  this.setState({inputText: newChar})
 
   }
 
   setInputArray = () =>{
-
     let newArray = this.state.inputText.split('');
     this.setState(this.state.inputArray = newArray)
-
   }
 
 
-
   checkLenghtHandler = ()=>{
-    if(this.state.inputText.split('').length < 5){
-      return(
-      <div>
-          <p>text too short!</p>
-      </div>
-       
-      )
-    }
-
-    else if(this.state.inputText.split('').length > 30){
+  if(this.state.inputText.split('').length > 30){
       return(
         <div>
         <p>Text too long!</p>
@@ -76,11 +64,7 @@ class App extends Component {
 
 
   getLengthHandler = () =>{
-    let value = this.state.inputText;
-
-    let valueArray = value.split('');
-
-    return valueArray.length;
+    return this.state.inputText.length;
   }
 
   render(){
@@ -93,35 +77,22 @@ class App extends Component {
       border: '1px solid black'
     };
 
-  let charCom = null;
-
-  if(this.state.inputText.split('').length > 0){
-
-    charCom = (
-      
+   let charCom = (  
       <div> 
-        {this.state.inputArray.map((char, index) => {
-          return <CharComponent
-          index={index + 1}
-          // charIndex={index + 1}
-          click={()=> {this.deleteCharComponentHandler(index)}}
+        {this.state.inputText.split('').map((char, index) => {
+          return( <CharComponent
+          index={index}
+          charindex={index + 1}
+          click={(event)=> {this.deleteCharComponentHandler(index)}}
           char={char}
+          key={index}
           >
-          </CharComponent>
-        
-
-
+          </CharComponent>) 
         })
         }
-        
-
       </div>
-
-    )
-
-  }
+    ) 
    
-
   return (
     <div className="App">
      <input type="text" 
@@ -131,7 +102,8 @@ class App extends Component {
      />
      <ValidationComponet value={this.getLengthHandler()}  
      check={this.checkLenghtHandler()}
-     charLength={this.getLengthHandler}
+     charlength={this.getLengthHandler()}
+     textlength={this.state.inputText.length}
      ></ValidationComponet>
      
      
