@@ -39,7 +39,10 @@ class App extends Component {
 
 
   deleteCharComponentHandler = (index)=>{
-  this.state.splice(index,1)
+  let charArray = [...this.state.inputArray];
+  
+  charArray.splice(index, 1)
+  this.setState({inputArray: charArray})
 
   }
 
@@ -127,8 +130,10 @@ class App extends Component {
      
      />
      <ValidationComponet value={this.getLengthHandler()}  
-     check={this.checkLenghtHandler()}></ValidationComponet>
-     <p>The length of your text is {this.getLengthHandler()}</p>
+     check={this.checkLenghtHandler()}
+     charLength={this.getLengthHandler}
+     ></ValidationComponet>
+     
      
      {charCom}
 

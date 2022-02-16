@@ -5,6 +5,7 @@ return (
     <div>
      
         <p>{props.check}</p>
+        <p>The length of your text is {props.charLength}</p>
 
 
     </div>
